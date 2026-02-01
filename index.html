@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Code Tracing Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Python Code Tracing Tool</h1>
+        
+        <div class="inputs-section">
+            <h3>User Inputs</h3>
+            <div id="inputsContainer">
+                <input type="text" class="user-input" placeholder="Write user input value here..." />
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="traceTable">
+                <thead>
+                    <tr id="headerRow">
+                        <th class="header-cell">
+                            <input type="text" class="var-name" placeholder="Variable name" />
+                            <select class="var-type">
+                                <option value="str">str</option>
+                                <option value="int">int</option>
+                            </select>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td class="data-cell">
+                            <input type="text" class="cell-input" placeholder="Value" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="output-section">
+            <h3>Program Output</h3>
+            <textarea id="programOutput" class="output-textarea" placeholder="Write predicted program output here..."></textarea>
+        </div>
+        
+        <div class="table-actions">
+            <button id="resetBtn" class="reset-btn">Reset</button>
+            <button id="exportBtn" class="export-btn">Export to Markdown</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
