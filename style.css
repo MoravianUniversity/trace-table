@@ -94,9 +94,10 @@ thead {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.header-cell:last-child {
+.header-cell:last-child, .data-cell:last-child {
     border-right: none;
 }
+
 
 .header-cell .var-name {
     width: 100%;
@@ -156,12 +157,12 @@ thead {
     max-width: 250px;
 }
 
-.data-cell:last-child {
-    border-right: none;
-}
-
 tr:last-child .data-cell {
     border-bottom: none;
+}
+
+.header-cell:last-child, tr .data-cell:last-child, tr:last-child .data-cell {
+    opacity: 0.5;
 }
 
 .cell-input {
