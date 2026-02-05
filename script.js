@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <select class="var-type">
                 <option value="str">str</option>
                 <option value="int">int</option>
+                <option value="bool">bool</option>
             </select>
         `;
         headerRow.appendChild(headerCell);
@@ -347,43 +348,32 @@ document.addEventListener('DOMContentLoaded', function() {
         const value = input.value.trim();
         const isStrikethrough = input.classList.contains('strikethrough');
         
-        // Reset styles if empty
+        // Remove validation classes first
+        input.classList.remove('valid', 'invalid');
+        
+        // Reset validation if empty
         if (value === '') {
-            input.style.borderColor = '';
-            input.style.backgroundColor = '';
             return;
         }
         
+        let isValid = false;
+        
         if (type === 'int') {
             // Check if it's a valid integer
-            if (!/^-?\d+$/.test(value)) {
-                input.style.borderColor = '#ff6b6b';
-                input.style.backgroundColor = '#ffe0e0';
-            } else {
-                // Use dimmer green if strikethrough
-                if (isStrikethrough) {
-                    input.style.borderColor = '#a8d5b3';
-                    input.style.backgroundColor = '#e8f5eb';
-                } else {
-                    input.style.borderColor = '#51cf66';
-                    input.style.backgroundColor = '#d3f9d8';
-                }
-            }
+            isValid = /^-?\d+$/.test(value);
         } else if (type === 'str') {
             // Check if it's a valid string (in quotes)
-            if (!/^".*"$/.test(value) && !/^'.*'$/.test(value)) {
-                input.style.borderColor = '#ff6b6b';
-                input.style.backgroundColor = '#ffe0e0';
-            } else {
-                // Use dimmer green if strikethrough
-                if (isStrikethrough) {
-                    input.style.borderColor = '#a8d5b3';
-                    input.style.backgroundColor = '#e8f5eb';
-                } else {
-                    input.style.borderColor = '#51cf66';
-                    input.style.backgroundColor = '#d3f9d8';
-                }
-            }
+            isValid = /^".*"$/.test(value) || /^'.*'$/.test(value);
+        } else if (type === 'bool') {
+            // Check if it's a valid boolean (True or False)
+            isValid = value === 'True' || value === 'False';
+        }
+        
+        // Apply appropriate class
+        if (isValid) {
+            input.classList.add('valid');
+        } else {
+            input.classList.add('invalid');
         }
     }
     
@@ -801,9 +791,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const firstRowCells = firstRow.querySelectorAll('.cell-input');
             firstRowCells.forEach(cell => {
                 cell.value = '';
-                cell.style.borderColor = '';
-                cell.style.backgroundColor = '';
-                cell.classList.remove('strikethrough');
+                cell.classList.remove('strikethrough', 'valid', 'invalid');
             });
             
             // Remove extra cells from first row (keep only one)

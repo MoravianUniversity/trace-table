@@ -193,6 +193,21 @@ tr:last-child .data-cell {
     color: #999;
 }
 
+.cell-input.invalid {
+    border-color: #ff6b6b;
+    background-color: #ffe0e0;
+}
+
+.cell-input.valid {
+    border-color: #51cf66;
+    background-color: #d3f9d8;
+}
+
+.cell-input.valid.strikethrough {
+    border-color: #a8d5b3;
+    background-color: #e8f5eb;
+}
+
 .table-actions {
     margin-bottom: 30px;
     text-align: center;
